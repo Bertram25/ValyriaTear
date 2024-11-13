@@ -16,7 +16,7 @@ function priv_build
         case ${ID:?} in
             debian | ubuntu)
                 sudo apt-get update
-                sudo apt-get install -y cppcheck {freeglut3,lib{openal,alut,vorbis,ogg,lua5.1,gettextpo,boost-all,opengl,glew,sdl2{-image,-ttf,}}}-dev
+                sudo apt-get install -y cppcheck gettext {freeglut3,lib{openal,alut,vorbis,ogg,lua5.1,gettextpo,boost-all,opengl,glew,sdl2{-image,-ttf,}}}-dev
                 ;;
         esac
     fi
