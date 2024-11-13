@@ -16,17 +16,17 @@ function priv_build
         case ${ID:?} in
             debian | ubuntu)
                 sudo apt-get update
-                sudo apt-get install -y cppcheck {freeglut3,lib{openal,alut,vorbis,ogg,lua5.1,gettextpo,boost-all,qt4-opengl,glew,sdl2{-image,-ttf,}}}-dev
+                sudo apt-get install -y cppcheck {freeglut3,lib{openal,alut,vorbis,ogg,lua5.1,gettextpo,boost-all,opengl,glew,sdl2{-image,-ttf,}}}-dev
                 ;;
         esac
     fi
-    git submodule update --recursive --init
-    git submodule update --recursive --remote
+    git submodule update --init --recursive --force --remote
+    cmake "${PWD}"
+    make translations
+    make -j2 valyriatear
     git ls-files src/\*.h src/\*.cpp |
         cppcheck --verbose --enable=all --quiet
     bash tools/encoding-tests.sh src/*
-    cmake "${PWD}"
-    make
 )
 
 function priv_main
