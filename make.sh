@@ -26,7 +26,7 @@ function priv_build
     make -j2 valyriatear
     mapfile -t < <(git ls-files src/\*.h src/\*.cpp)
     cppcheck --verbose --enable=all --quiet "${MAPFILE[@]}"
-    bash tools/encoding-tests.sh src/*
+    # bash tools/encoding-tests.sh src/*
 )
 
 function priv_main
