@@ -24,6 +24,9 @@ function priv_build
     cmake "${PWD}"
     make translations
     make -j2 valyriatear
+    mapfile -t < <(git ls-files src/\*.h src/\*.cpp)
+    cppcheck --verbose --enable=all --quiet "${MAPFILE[@]}"
+    bash tools/encoding-tests.sh src/*
 )
 
 function priv_main
