@@ -22,6 +22,9 @@ function priv_build
     fi
     git submodule update --recursive --init
     git submodule update --recursive --remote
+    git ls-files src/\*.h src/\*.cpp |
+        cppcheck --verbose --enable=all --quiet
+    bash tools/encoding-tests.sh src/*
     cmake "${PWD}"
     make
 )
