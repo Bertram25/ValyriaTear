@@ -11,6 +11,15 @@ EOF
 
 function priv_build
 (
+    if ! (command -v cppcheck); then
+        source '/etc/os-release'
+        case ${ID:?} in
+            debian | ubuntu)
+                sudo apt-get update
+                sudo apt-get install -y cppcheck {freeglut3,lib{openal,alut,vorbis,ogg,lua5.1,gettextpo,boost-all,qt4-opengl,glew,sdl2{-image,-ttf,}}}-dev
+                ;;
+        esac
+    fi
     git submodule update --recursive --init
     git submodule update --recursive --remote
     cmake "${PWD}"
