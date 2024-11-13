@@ -13,7 +13,7 @@ function priv_build
 (
     git submodule update --recursive --init
     git submodule update --recursive --remote
-    cmake
+    cmake "${PWD}"
     make
 )
 
